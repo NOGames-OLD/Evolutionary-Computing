@@ -213,6 +213,7 @@ class Individual:
                         #dist_from_origin = np.sqrt(x - (container.sizeX / 2)**2 + x - (container.sizeY / 2)**2)
                         #rand = random.randrange(0, 100)
                         open_points.append((temp_cylinder.x, temp_cylinder.y, y))
+                        return open_points
                         
 
         """if len(placed) == 1:
@@ -402,12 +403,13 @@ class Population:
             'worst': min(fitnesses)
         }
 
-container=Container(12.0, 10.0, 150.0)
+container=Container(15.0, 12.0, 200.0)
 cylinders=[
-            Cylinder(1, 3.0, 20.0),
+            Cylinder(1, 3.5, 25.0),
             Cylinder(2, 3.0, 20.0),
-            Cylinder(3, 2.0, 15.0),
-            Cylinder(4, 2.0, 15.0)
+            Cylinder(3, 2.5, 18.0),
+            Cylinder(4, 2.5, 18.0),
+            Cylinder(5, 2.0, 15.0)
         ]
 
 pop = Population(
@@ -426,6 +428,7 @@ for gen in range(num_generations):
         print(f"Generation {gen}: Best={stats['best']:.2f}, Avg={stats['average']:.2f}")
 
 best = pop.get_best_individual()
-print(str(best.fitness))
 print(str(best.genes))
+stats = pop.get_stats()
+print(f"Generation {gen}: Best={stats['best']:.2f}, Avg={stats['average']:.2f}")
 best.draw()
